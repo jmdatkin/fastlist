@@ -1,7 +1,6 @@
 {
   "name": "notes",
   "version": "0.1.0",
-  "homepage": "/notes/",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
