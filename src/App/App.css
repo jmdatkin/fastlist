@@ -1,0 +1,97 @@
+.App { 
+  height: 100%;
+  padding: 25px;
+  background-color: #333;
+  touch-action: none;
+}
+
+.AppWrapper {
+  padding: 10px;
+  border-radius: 7px;
+  touch-action: all;
+  background-color: #fdfdfd;
+}
+
+.Entry {
+  padding: 10px;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+  min-height: 25px;
+}
+
+.Entry:hover {
+  background-color: #eee;
+}
+
+.Entry-checked {
+  background-color: #f1f1f1 !important;
+  color: #ddd;
+  text-decoration: line-through;
+}
+
+.EntryContent {
+  display: block;
+  float: left;
+  line-height: 23px;
+  text-decoration: inherit;
+}
+
+.InputComponent {
+  margin-top: 10px;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.Entry-drag-handle {
+  float: right;
+  cursor: grab;
+  color: #888;
+}
+
+@media only screen and (max-width: 600px) {
+  .Entry-drag-handle, .Entry {
+    cursor: pointer;
+  }
+}
+
+
+
+.Entry-first-in-list {
+  border-top: 0;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.Entry-last-in-list {
+  border: 0;
+}
+
+.ToggleButton {
+  color: #000;
+  display: block;
+  float: left;
+  margin-right: 10px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.ToggleButton > .MuiSvgIcon-root {
+  color: inherit;
+}
+
+.ToggleButton-checked {
+  color: rgb(165, 165, 165);
+  /* background-color: #000; */
+}
+
+.ToggleButton:hover {
+  color: #444;
+}
