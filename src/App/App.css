@@ -60,6 +60,10 @@
   .Entry-drag-handle, .Entry {
     cursor: pointer;
   }
+
+  .Entry:hover {
+    background-color: transparent;
+  }
 }
 
 
