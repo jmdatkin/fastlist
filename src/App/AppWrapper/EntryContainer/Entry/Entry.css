@@ -1,5 +1,6 @@
 .Entry {
   border-bottom: 1px solid #ddd;
+  touch-action: auto;
 }
 
 
