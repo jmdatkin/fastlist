@@ -1,0 +1,7 @@
+.AppWrapper {
+    padding: 10px;
+    border-radius: 7px;
+    background-color: #fdfdfd;
+    max-height: 95vh;
+    overflow: hidden;
+  }

@@ -3,11 +3,11 @@ import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 
 function ToggleButton(props) {
-    if (props.checked) {
+    if (props.isChecked) {
         return (
             <div className={`ToggleButton
-                ${props.checked ? 'ToggleButton-checked' : ''}`}
-                onClick={(e) => props.toggleHandler(e,props.idx,props.checked)}>
+                ${props.isChecked ? 'ToggleButton-checked' : ''}`}
+                onClick={(e) => props.entryToggleHandler(e,props.idx,props.isChecked)}>
                     <CheckCircleOutlineIcon></CheckCircleOutlineIcon>
             </div>
         );
@@ -15,8 +15,8 @@ function ToggleButton(props) {
     else {
         return (
             <div className={`ToggleButton
-                ${props.checked ? 'ToggleButton-checked' : ''}`}
-                onClick={(e) => props.toggleHandler(e,props.idx,props.checked)}>
+                ${props.isChecked ? 'ToggleButton-checked' : ''}`}
+                onClick={(e) => props.entryToggleHandler(e,props.idx,props.isChecked)}>
                     <RadioButtonUncheckedIcon></RadioButtonUncheckedIcon>
             </div>
         );

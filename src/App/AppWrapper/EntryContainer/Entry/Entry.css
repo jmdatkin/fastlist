@@ -1,3 +1,8 @@
+.Entry {
+  border-bottom: 1px solid #ddd;
+}
+
+
 .Entry-drag-handle {
     float: right;
     cursor: grab;
@@ -26,4 +31,14 @@
   
   .Entry-last-in-list {
     border: 0;
+  }
+  
+  .Entry:hover {
+    background-color: #eee;
+  }
+  
+  .Entry-checked {
+    background-color: #f1f1f1 !important;
+    color: #ddd;
+    text-decoration: line-through;
   }

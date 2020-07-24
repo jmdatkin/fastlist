@@ -1,0 +1,10 @@
+.EntryRow {
+    /* padding: 10px; */
+    padding: 10px;
+    height: auto;
+    min-height: 25px;
+}
+
+.EntryRow-expanded {
+    border-bottom: 1px solid #dedede;
+}

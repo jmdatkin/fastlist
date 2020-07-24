@@ -2,32 +2,11 @@
   height: 100%;
   padding: 25px;
   background-color: #333;
-  touch-action: none;
+  /* touch-action: none; */
+  overflow: hidden;
 }
 
-.AppWrapper {
-  padding: 10px;
-  border-radius: 7px;
-  touch-action: all;
-  background-color: #fdfdfd;
-}
 
-.Entry {
-  padding: 10px;
-  height: auto;
-  border-bottom: 1px solid #ddd;
-  min-height: 25px;
-}
-
-.Entry:hover {
-  background-color: #eee;
-}
-
-.Entry-checked {
-  background-color: #f1f1f1 !important;
-  color: #ddd;
-  text-decoration: line-through;
-}
 
 .EntryContent {
   display: block;
@@ -54,28 +33,6 @@
   float: right;
   cursor: grab;
   color: #888;
-}
-
-@media only screen and (max-width: 600px) {
-  .Entry-drag-handle, .Entry {
-    cursor: pointer;
-  }
-
-  .Entry:hover {
-    background-color: transparent;
-  }
-}
-
-
-
-.Entry-first-in-list {
-  border-top: 0;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-}
-
-.Entry-last-in-list {
-  border: 0;
 }
 
 .ToggleButton {

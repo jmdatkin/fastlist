@@ -1,4 +1,5 @@
 import React from 'react';
+import './AppWrapper.css';
 import Container from '@material-ui/core/Container';
 import EntryContainer from './EntryContainer/EntryContainer.js';
 import InputComponent from './InputComponent/InputComponent.js';
@@ -18,14 +19,13 @@ class AppWrapper extends React.Component {
       this.state = {
         value: '',
         entryList: [],
-        mouseDownIndex: null,
-        mouseMoveIndex: null,
-        ongoingTouches: null
+        mouseDownIndex: null
       };
       this.handleEntryMousedown = this.handleEntryMousedown.bind(this);
       this.handleEntryMousemove = this.handleEntryMousemove.bind(this);
       this.handleEntryMouseup = this.handleEntryMouseup.bind(this);
       this.handleEntryToggle = this.handleEntryToggle.bind(this);
+      this.handleEntryExpand = this.handleEntryExpand.bind(this);
       this.handleFieldInputChange = this.handleFieldInputChange.bind(this);
 
       //Input
@@ -35,15 +35,8 @@ class AppWrapper extends React.Component {
 
     //Content Events
     handleEntryMousedown(e,idx) {
-      if (e.type === "touchstart") {
-        this.setState({
-          ongoingTouches: e.changedTouches
-        });
-      }
-      // e.stopPropagation();
       this.setState({
-        mouseDownIndex: idx,
-        // mouseOverIndex: idx
+        mouseDownIndex: idx
       });
     }
 
@@ -51,6 +44,7 @@ class AppWrapper extends React.Component {
       //Due to the nature of touch events, the target of touchmove will only ever refer to the target of the preceding touchstart.
       //If event is coming from a mobile context, redefine idx by computing target element based on touch position
       if (e.type === "touchmove") {
+        e.preventDefault();
         //Iterate through each element and test if touch position is contained within its bounding rect.
         this.state.entryList.forEach(function(val,elIdx) {
           var boundingRect = val.ref.current.getBoundingClientRect();
@@ -93,10 +87,17 @@ class AppWrapper extends React.Component {
 
     
     handleEntryToggle(e,idx,checked) {
-      console.log(arguments);
       var temp = this.state.entryList;
-      console.log(checked);
-      temp[idx].checked = !checked;
+      temp[idx].isChecked = !checked;
+      this.setState({
+        entryList: temp
+      });
+    }
+
+    handleEntryExpand(e,idx,expanded) {
+      console.log("called");
+      var temp = this.state.entryList;
+      temp[idx].isExpanded = !expanded;
       this.setState({
         entryList: temp
       });
@@ -116,7 +117,8 @@ class AppWrapper extends React.Component {
         this.setState({
           entryList: this.state.entryList.concat({
             content: this.state.value,
-            checked: false,
+            isChecked: false,
+            isExpanded: false,
             ref: React.createRef()
           }),
           value: ''
@@ -129,15 +131,12 @@ class AppWrapper extends React.Component {
     render() {
       return (
         <Container className="AppWrapper"  style={{padding: "15px"}} maxWidth="sm"
-        // onTouchMove={this.handleEntryMousemove}
-        onMouseUp={this.handleEntryMouseup}
-        onTouchEnd={this.handleEntryMouseup}>
-        {/* <div > */}
+          onMouseUp={this.handleEntryMouseup}
+          onTouchEnd={this.handleEntryMouseup}>
           <EntryContainer
             entryMousedownHandler={this.handleEntryMousedown}
             entryMousemoveHandler={this.handleEntryMousemove}
-            entryTouchcancelHandler={this.handelEntryMouseup}
-            // entryMouseupHandler={this.handleEntryMouseup}
+            entryExpandHandler={this.handleEntryExpand}
             entryToggleHandler={this.handleEntryToggle}
             content={this.state.entryList}>
           </EntryContainer>
@@ -145,8 +144,7 @@ class AppWrapper extends React.Component {
             onChangeHandler={this.handleFieldInputChange}
             onKeyPressHandler={this.doSubmit}>
           </InputComponent>
-        {/* </div> */}
-          </Container>
+        </Container>
       );
     }
   }

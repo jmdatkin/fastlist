@@ -1,0 +1,10 @@
+.EntrySubmenu {
+    width: 75%;
+    margin: 0 auto 5px auto;
+  padding: 10px 40px;
+  background-color: #fcfcfc;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: solid 1px #eee;
+  border-top: 0;
+}
