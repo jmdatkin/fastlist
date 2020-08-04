@@ -1,0 +1,56 @@
+const mongodb = require("mongodb");
+
+const MONGO_USERNAME = 'julian';
+const MONGO_PASSWORD = 'miseenplace';
+const MONGO_HOSTNAME = '127.0.0.1';
+const MONGO_PORT = '27017';
+const MONGO_DB = 'fastlist';
+
+const url = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`;
+const MongoClient = mongodb.MongoClient;//({useUnifiedTopology: true});
+
+passport.use
+
+
+
+function initDB() {
+    MongoClient.connect(url, function(err,db) {
+        if (err) throw err;
+        var dbo = db.db(MONGO_DB);
+        dbo.createCollection("users")
+        console.log("Database & collection created!");
+        db.close();
+    });
+}
+
+function createUser(user,pass) {
+    MongoClient.connect(url, function(err,db) {
+        if (err) throw err;
+        var dbo = db.db(MONGO_DB);
+        var newUser = {
+            username: user,
+            pwd: pass
+        };
+        dbo.collection("users").insertOne(newUser, function(err,res) {
+            if (err) throw err;
+            console.log("1 document inserted:");
+            console.log(res);
+            db.close();
+        });
+    });
+}
+
+function getList(id) {
+    MongoClient.connect(url, function(err,db) {
+        if (err) throw err;
+        var dbo = db.db(MONGO_DB);
+        //Get list where listID = provided ID
+        dbo.collection("lists").findOne({
+            listID: id
+        });
+    })
+}
+
+module.exports = {
+    createUser: createUser
+};

@@ -1,0 +1,20 @@
+.LoginRegisterForm {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 15px;
+    background-color: #fdfdfd;
+    border-radius: 7px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.LoginForm, .RegisterForm {
+
+}
+
+.ToggleText {
+    font-size: 10pt;
+    text-decoration: underline;
+    color: rgb(33, 99, 138);
+}
