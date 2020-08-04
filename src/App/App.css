@@ -6,15 +6,6 @@
   overflow: hidden;
 }
 
-
-
-.EntryContent {
-  display: block;
-  float: left;
-  line-height: 23px;
-  text-decoration: inherit;
-}
-
 .InputComponent {
   margin-top: 10px;
 }

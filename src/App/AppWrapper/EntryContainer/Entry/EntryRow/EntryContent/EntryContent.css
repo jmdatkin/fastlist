@@ -1,0 +1,8 @@
+.EntryContent {
+    display: block;
+    float: left;
+    line-height: 23px;
+    text-decoration: inherit;
+    width: 45%;
+    max-width: 50%;
+  }

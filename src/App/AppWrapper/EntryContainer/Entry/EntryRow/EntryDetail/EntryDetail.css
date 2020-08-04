@@ -1,0 +1,9 @@
+.EntryDetail {
+    display: block;
+    line-height: 23px;
+    text-decoration: inherit;
+    width: 33%;
+    max-width: 50%;
+    float: left;
+    color: #ccc;
+}
