@@ -4,6 +4,7 @@ import Container from '@material-ui/core/Container';
 import EntryContainer from './EntryContainer/EntryContainer.js';
 import InputComponent from './InputComponent/InputComponent.js';
 
+
 function coordsInRect(x,y,x1,y1,w,h) {
   let x2 = x1+w;
   let y2 = y1+h;

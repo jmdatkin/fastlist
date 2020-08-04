@@ -10,7 +10,8 @@ class EntrySubmenu extends React.Component {
     render() {
         return (
             <div className="EntrySubmenu">
-                <TextField id="standard-basic" variant="standard" placeholder="Detail"></TextField>
+                <TextField id="standard-basic" variant="standard" placeholder="Detail"
+                    onChange={this.props.handleDetailInputChange}></TextField>
             </div>
         )
     }

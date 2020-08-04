@@ -3,6 +3,8 @@ import DragHandleIcon from '@material-ui/icons/DragHandle';
 import ToggleButton from './ToggleButton/ToggleButton.js';
 import ToggleExpandButton from './ToggleExpandButton/ToggleExpandButton.js';
 import EntryContent from './EntryContent/EntryContent.js';
+import EntryDetail from './EntryDetail/EntryDetail.js';
+import TextField from '@material-ui/core/TextField';
 import './EntryRow.css';
 
 const EntryRow = (props) => (//React.forwardRef((props, ref) => (
@@ -15,6 +17,13 @@ const EntryRow = (props) => (//React.forwardRef((props, ref) => (
       <ToggleButton entryToggleHandler={props.entryToggleHandler}
       isChecked={props.isChecked} idx={props.idx}/>
       <EntryContent content={props.content} />
+
+      {(props.isExpanded)
+      ? <TextField onChange={props.detailInputChangeHandler} id="standard-basic" variant="standard"
+        value={props.detail}>
+      </TextField>
+      : <EntryDetail detail={props.detail}></EntryDetail>}
+
       <DragHandleIcon className="Entry-drag-handle"
         onMouseDown={(e) => props.entryMousedownHandler(e,props.idx)}
         onTouchStart={(e) => props.entryMousedownHandler(e,props.idx)}
