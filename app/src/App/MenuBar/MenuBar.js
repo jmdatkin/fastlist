@@ -5,6 +5,8 @@ import './MenuBar.css';
 
 function MenuBar(props) {
 
+    const classes = props.classes;
+
     return (
         <AppBar style={{'backgroundColor': 'grey'}} position="static" className="MenuBar">
             <Toolbar variant="dense">

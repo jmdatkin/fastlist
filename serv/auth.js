@@ -1,7 +1,7 @@
 const passport = require("passport"), localStrategy = require("passport-local").Strategy;
 const JWTStrategy = require("passport-jwt").Strategy;
 const ExtractJWT = require("passport-jwt").ExtractJwt;
-const User = require("./model");
+const User = require("./userModel");
 
 passport.use("register", new localStrategy(async(username, password, done) => {
     // if (User.findOne({username}))

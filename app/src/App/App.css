@@ -3,7 +3,7 @@
   background-color: #333;
   /* touch-action: none; */
   overflow: hidden;
-}
+} 
 
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
