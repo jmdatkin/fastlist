@@ -6,7 +6,10 @@ function AppWrapper(props) {
 
     return (
         <div className="AppWrapper">
-            <AppListContainer />
+            <AppListContainer
+                entryList={props.entryList}
+                modifyEntryList={props.modifyEntryList}
+                addEntryAction={props.addEntryAction} />
         </div>
     )
 }

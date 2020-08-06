@@ -19,7 +19,7 @@ class AppListContainer extends React.Component {
       super();
       this.state = {
         value: '',
-        entryList: [],
+        // entryList: [],
         mouseDownIndex: null
       };
       this.handleEntryMousedown = this.handleEntryMousedown.bind(this);
@@ -31,13 +31,9 @@ class AppListContainer extends React.Component {
 
       //Input
       this.doSubmit = this.doSubmit.bind(this);
-    }
 
-    exportList() {
-      const entryListSlice = [...this.state.entryList];
-      return entryListSlice;
+      this.entryContainerRef = React.createRef();
     }
-
 
     //Content Events
     handleEntryMousedown(e,idx) {
@@ -52,7 +48,8 @@ class AppListContainer extends React.Component {
       if (e.type === "touchmove") {
         e.preventDefault();
         //Iterate through each element and test if touch position is contained within its bounding rect.
-        this.state.entryList.forEach(function(val,elIdx) {
+        // this.state.entryList.forEach(function(val,elIdx) {
+        this.props.entryList.forEach(function(val,elIdx) {
           var boundingRect = val.ref.current.getBoundingClientRect();
           if (coordsInRect(
             e.touches[0].pageX,
@@ -70,10 +67,11 @@ class AppListContainer extends React.Component {
       var mouseDownIndex = this.state.mouseDownIndex;
       if (mouseDownIndex !== null) {
         if (idx !== mouseDownIndex) {
-          var temp = this.state.entryList;
+          var temp = this.props.entryList;
           [temp[mouseDownIndex], temp[idx]] = [temp[idx], temp[mouseDownIndex]];
+          this.props.modifyEntryList(temp);
           this.setState({
-            entryList: temp,
+            // entryList: temp,
             mouseDownIndex: idx
           });
         }
@@ -93,20 +91,23 @@ class AppListContainer extends React.Component {
 
     
     handleEntryToggle(e,idx,checked) {
-      var temp = this.state.entryList;
+      var temp = this.props.entryList;
       temp[idx].isChecked = !checked;
-      this.setState({
-        entryList: temp
-      });
+      this.props.modifyEntryList(temp);
+      this.entryContainerRef.current.forceUpdate();
+      // this.setState({
+      //   entryList: temp
+      // });
     }
 
     handleEntryExpand(e,idx,expanded) {
       console.log("called");
       var temp = this.state.entryList;
       temp[idx].isExpanded = !expanded;
-      this.setState({
-        entryList: temp
-      });
+      this.props.modifyEntryList(temp);
+      // this.setState({
+      //   entryList: temp
+      // });
     }
   
 
@@ -120,13 +121,21 @@ class AppListContainer extends React.Component {
     doSubmit(e) {
       //Enter pressed
       if (e.which === 13 && this.state.value !== '') {
-        this.setState({
-          entryList: this.state.entryList.concat({
-            content: this.state.value,
-            isChecked: false,
-            isExpanded: false,
-            ref: React.createRef()
-          }),
+        var newObj = {
+          content: this.state.value,
+          isChecked: false,
+          isExpanded: false,
+          ref: React.createRef()
+        }
+        this.props.addEntryAction(newObj);
+        this.setState(
+          {
+          // entryList: this.state.entryList.concat({
+          //   content: this.state.value,
+          //   isChecked: false,
+          //   isExpanded: false,
+          //   ref: React.createRef()
+          // }),
           value: ''
         });
         //Clear input
@@ -140,11 +149,12 @@ class AppListContainer extends React.Component {
           onMouseUp={this.handleEntryMouseup}
           onTouchEnd={this.handleEntryMouseup}>
           <EntryContainer
+            ref={this.entryContainerRef}
             entryMousedownHandler={this.handleEntryMousedown}
             entryMousemoveHandler={this.handleEntryMousemove}
             entryExpandHandler={this.handleEntryExpand}
             entryToggleHandler={this.handleEntryToggle}
-            content={this.state.entryList}>
+            content={this.props.entryList}>
           </EntryContainer>
           <InputComponent
             onChangeHandler={this.handleFieldInputChange}

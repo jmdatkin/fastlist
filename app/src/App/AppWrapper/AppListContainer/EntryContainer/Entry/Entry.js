@@ -20,6 +20,10 @@ class Entry extends React.Component {
     });
   }
 
+  // componentDidUpdate() {
+  //   console.log(`idx ${this.props.idx} updated`);
+  // }
+
   render() {
     return (
       <div 
