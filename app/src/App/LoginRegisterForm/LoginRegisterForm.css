@@ -2,19 +2,43 @@
     position: absolute;
     right: 0;
     top: 0;
-    margin: 15px;
+    /* margin: 25px; */
     background-color: #fdfdfd;
-    border-radius: 7px;
+    border-bottom-left-radius: 7px;
     padding: 15px;
     box-sizing: border-box;
+    min-width: 300px;
 }
 
 .LoginForm, .RegisterForm {
 
 }
 
+.FormLabel {
+    color: #888;
+    font-size: 11pt;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
 .ToggleText {
     font-size: 10pt;
     text-decoration: underline;
     color: rgb(33, 99, 138);
+    cursor: pointer;
+    user-select: none;
+}
+
+button {
+    margin-bottom: 5px;
 }

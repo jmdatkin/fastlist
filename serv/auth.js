@@ -4,10 +4,10 @@ const ExtractJWT = require("passport-jwt").ExtractJwt;
 const User = require("./model");
 
 passport.use("register", new localStrategy(async(username, password, done) => {
+    // if (User.findOne({username}))
+    //     return done(null,false,{message: "A user with this username already exists!"});
     try {
         const user = await User.create({username,password});
-        console.log("[auth.js/register]");
-        console.log(user);
         return done(null,user);
     } catch (error) {
         done(error);

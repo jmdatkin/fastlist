@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var passport = require('passport');
 var path = require('path');
+// var cors = require('cors');               //DEV!!
 const bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -12,6 +13,10 @@ var loginRouter = require("./routes/login");
 
 var app = express();
 
+// app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+// app.use(cors());
+
 db_helper.connect();
 
 
@@ -21,9 +26,13 @@ app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 
+app.use((req,res,next) => {
+  console.log(req.body);
+  next();
+});
+
 
 require("./auth");
-
 
 //Load middleware
 // app.configure(function() {
@@ -34,16 +43,16 @@ app.use(passport.session());
 app.use('/register',registerRouter);
 app.use('/login', loginRouter);
 
+// require("./setupProxy")(app);
 // });
-app.use( bodyParser.urlencoded({ extended : false }) );
 
 // app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
 
 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  console.log(req.originalUrl);
   next(createError(404));
 });
 
