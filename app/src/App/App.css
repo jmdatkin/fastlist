@@ -1,13 +1,8 @@
 .App { 
   height: 100%;
-  padding: 25px;
   background-color: #333;
   /* touch-action: none; */
   overflow: hidden;
-}
-
-.InputComponent {
-  margin-top: 10px;
 }
 
 .noselect {

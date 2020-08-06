@@ -21,8 +21,11 @@ function LoginForm(props) {
             }
         })
         .then(response => response.text())
-        .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
+        .then(data => props.flashFeedbackMessage(data))
+        // .then(data => console.log(data))
+        .then(props.closeLoginAction())
+        .catch(error => props.flashFeedbackMessage(error));
+    // .catch(error => console.error('Error:', error));
     }
 
     return (

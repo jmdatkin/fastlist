@@ -28,10 +28,10 @@ const EntryRow = (props) => (//React.forwardRef((props, ref) => (
         onMouseDown={(e) => props.entryMousedownHandler(e,props.idx)}
         onTouchStart={(e) => props.entryMousedownHandler(e,props.idx)}
         ></DragHandleIcon>
-        <ToggleExpandButton
+        {/* <ToggleExpandButton
         entryExpandHandler={props.entryExpandHandler}
         isExpanded={props.isExpanded}
-        idx={props.idx}></ToggleExpandButton>
+        idx={props.idx}></ToggleExpandButton> */}
   </div>
 );
 

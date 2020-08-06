@@ -26,10 +26,10 @@ app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 
-app.use((req,res,next) => {
-  console.log(req.body);
-  next();
-});
+// app.use((req,res,next) => {
+//   console.log(req.body);
+//   next();
+// });
 
 
 require("./auth");
@@ -64,7 +64,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send(err.message);
 });
 
 module.exports = app;

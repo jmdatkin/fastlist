@@ -1,13 +1,13 @@
 .LoginRegisterForm {
-    position: absolute;
-    right: 0;
-    top: 0;
+    /* position: absolute; */
+    /* right: 0;
+    top: 0; */
     /* margin: 25px; */
-    background-color: #fdfdfd;
-    border-bottom-left-radius: 7px;
+    /* background-color: #fdfdfd; */
+    /* border-bottom-left-radius: 7px;
     padding: 15px;
-    box-sizing: border-box;
-    min-width: 300px;
+    box-sizing: border-box; */
+    /* min-width: 300px; */
 }
 
 .LoginForm, .RegisterForm {
