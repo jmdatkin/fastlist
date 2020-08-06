@@ -1,17 +1,32 @@
 import React from 'react';
-import { Button, Drawer, List, ListItem } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { Divider, Button, Drawer, List, ListItem } from '@material-ui/core';
 import './UserActionPane.css';
 
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme) => ({
+    drawer: {
+        width: drawerWidth,
+        flexShrink: 0,
+      },
+      drawerPaper: {
+        width: drawerWidth,
+      }
+}));
+
 function UserActionPane(props) {
+    const classes = useStyles();
 
     return (
-        <Drawer className="UserActionPane"
+        <Drawer className={classes.drawer}
+            classes={{paper: classes.drawerPaper}}
             open={props.open}
             onClose={props.onClose}>
-            
+            <Divider />
             <List>
                 <ListItem>
-                    Logged in as:
+                    Logged in as: {(props.currentUser === null) ? '' : props.currentUser.username}
                 </ListItem>
                 <ListItem>
                     <Button onClick={props.exportAction}>

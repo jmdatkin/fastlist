@@ -41,6 +41,7 @@ function LoginRegisterForm(props) {
                 <LoginForm
                     toggleAction={() => setType('register')}
                     flashFeedbackMessage={props.flashFeedbackMessage}
+                    setCurrentUser={props.setCurrentUser}
                     closeLoginAction={props.closeLoginAction}/> :
                 <RegisterForm
                     toggleAction={() => setType('login')}

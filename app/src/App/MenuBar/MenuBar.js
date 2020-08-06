@@ -17,7 +17,9 @@ function MenuBar(props) {
                         </IconButton>
                     </Grid>
                     <Grid item>
-                        <Button edge="end" variant="outlined" onClick={props.openLoginAction} className="LoginButton">Login/Register</Button>
+                        {(props.currentUser === null) ?
+                        <Button edge="end" variant="outlined" onClick={props.openLoginAction} className="LoginButton">Log In/Register</Button> :
+                        <Button edge="end" variant="outlined" onClick={props.logoutAction} className="LoginButton">Log Out</Button>}
                     </Grid>
                 </Grid>
             </Toolbar>

@@ -6,18 +6,25 @@ var router = express.Router();
 router.post("/", (req,res,next) => {
     passport.authenticate("login", async (err, user, info) => {
         try {
-            if (err || !user) {
+            if (err) {
                 const error = new Error("An error occurred");
-                return next(error);
+                next(error);
+            }
+            //Send back message specific to problem
+            else if (!user) {
+                res.status(403);
+                res.end(info.message);//next(error);
+                return;
             }
             req.login(user, {session: false}, async (error) => {
                 if (error) return next(error);
                 const body = { _id: user._id, username: user.username};
-                const token = jwt.sign({user: body}, 'top_secret');
-                return res.json({token});
+                const token = jwt.sign({user: body}, 'e4344fdf28faf48aac35dc94aa0227fa');
+                res.cookie('token',token,{httpOnly:true, sameSite: 'strict', secure: true});
+                return res.json({token: token, user: body});
             });
         } catch (error) {
-            return next(error);
+            return res.json(error);//next(error);
     }
     })(req,res,next);
     // res.send(req.user);
