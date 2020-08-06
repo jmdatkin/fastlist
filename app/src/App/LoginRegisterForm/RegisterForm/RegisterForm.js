@@ -29,12 +29,16 @@ function RegisterForm(props) {
 
     return (
         <div className="RegisterForm">
-        <span className="FormLabel">Register</span>
-                <TextField onChange={(e) => setUsername(e.target.value)} label="Username" variant="outlined" /><br/><br/>
-                <TextField onChange={(e) => setPassword(e.target.value)} type="password" label="Password" variant="outlined" /><br/><br/>
+                <TextField className="FormInputField" onChange={(e) => setUsername(e.target.value)} label="Username" variant="outlined" fullWidth />
+                <TextField className="FormInputField" onChange={(e) => setPassword(e.target.value)} type="password" label="Password" variant="outlined" fullWidth />
                 <Button type="submit" onClick={registerSubmitHandler} variant="contained" disableElevation>
-                    Submit
-                </Button>
+                    Register
+                </Button><br /><br />
+                <a onClick={props.toggleAction}>
+                    <span className="ToggleText noselect">
+                        Already have an account? Click here to log in!
+                    </span>
+                </a>
         </div>
     );
 }

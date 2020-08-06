@@ -1,5 +1,5 @@
 .EntryContainer {
-    max-height: calc(100vh - 185px);
+    max-height: calc(100vh - 190px);
     overflow-y: auto;
     touch-action: auto;
     scrollbar-width: thin;

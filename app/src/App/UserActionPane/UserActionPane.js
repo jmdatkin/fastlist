@@ -14,7 +14,7 @@ function UserActionPane(props) {
                     Logged in as:
                 </ListItem>
                 <ListItem>
-                    <Button >
+                    <Button onClick={props.exportAction}>
                         Export List
                     </Button>
                 </ListItem>
