@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-const User = require("./model");
+const User = require("./userModel");
+const List = require("./listModel");
 
 const MONGO_USERNAME = 'julian';
 const MONGO_PASSWORD = 'miseenplace';
@@ -16,12 +17,32 @@ function connect() {
     // mongoose.connection.on('connected', () => console.log(mongoose.connection));
 }
 
-function getList(listID) {
+async function putList(listObj) {
+    await List.create(listObj)
+    .catch(error => next(error));
+}
+
+async function getList(listID) {
     return User.findOne({
         id: listID
     });
 }
 
+async function getAllListsFromUser(userID,callback) {
+    console.log(userID);
+    await List.find({
+        user_ID: userID
+    })
+    .then(data => {
+        console.log("[db_helper::getAllListsFromUser]");
+        console.log(data);
+        callback(data);
+    })
+    .catch(error => next(error));
+}
+
 module.exports = {
-    connect: connect
+    connect: connect,
+    putList: putList,
+    getAllListsFromUser: getAllListsFromUser
 };

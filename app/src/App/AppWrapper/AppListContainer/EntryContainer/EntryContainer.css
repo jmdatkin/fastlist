@@ -5,3 +5,9 @@
     scrollbar-width: thin;
     margin-bottom: 10px;
 }
+
+@media only screen and (max-width: 600px) {
+    .EntryContainer {
+        max-height: calc(100vh - 250px);
+    }
+}

@@ -4,6 +4,7 @@ const ExtractJWT = require("passport-jwt").ExtractJwt;
 const User = require("./userModel");
 
 passport.use("register", new localStrategy(async(username, password, done) => {
+    
     // if (User.findOne({username}))
     //     return done(null,false,{message: "A user with this username already exists!"});
     var userRegexp = /^[a-zA-Z0-9]{4,12}$/;
@@ -33,20 +34,23 @@ passport.use("login", new localStrategy(async (username,password, done) => {
         }
         console.log("[auth.js/login::successful]");
         console.log("successful login");
+        console.log(user);
         return done(null, user, {message: "Logged in successfully!"});
     } catch (error) {
         return done(error);
     }
 }));
 
-passport.use(new JWTStrategy({
-    secretOrKey: 'e4344fdf28faf48aac35dc94aa0227fa',
-    jwtFromRequest: ExtractJWT.fromUrlQueryParameter('secret_token')
-}, async (token, done) => {
-    console.log("tokennnnn");
-    try {
-        return done(null, token.user);
-    } catch (error) {
-        done(error);
+passport.use(new JWTStrategy(
+    {
+        secretOrKey: 'e4344fdf28faf48aac35dc94aa0227fa',
+        jwtFromRequest: (req) => req.cookies.token
+    }, async (token, done) => {
+        console.log(token);
+        try {
+            return done(null, token);
+        } catch (error) {
+            console.log(error);
+            done(error);
     }
 }));

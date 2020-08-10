@@ -3,20 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { IconButton, Divider, Button, Drawer, List, ListItem } from '@material-ui/core';
 import './UserActionPane.css';
+import UserSavedLists from './UserSavedLists/UserSavedLists.js';
 
-// const drawerWidth = 240;
-
-// const useStyles = makeStyles((theme) => ({
-//     drawer: {
-//         width: drawerWidth,
-//         flexShrink: 0,
-//       },
-//       drawerPaper: {
-//         width: drawerWidth,
-//       }
-// }));
 
 function UserActionPane(props) {
+  
     
     return (
         <Drawer className={props.classes.drawer}
@@ -38,7 +29,17 @@ function UserActionPane(props) {
                         Export List
                     </Button>
                 </ListItem>
+                <ListItem>
+                    <Button onClick={() => {props.handleUpload(); props.onClose()}}>
+                        Upload List
+                    </Button>
+                </ListItem>
             </List>
+            <Divider />
+            <UserSavedLists
+                userLists={props.userLists}
+                putToEntryList={props.putToEntryList}
+                closeDrawer={props.onClose} />
         </Drawer>
     );
 }

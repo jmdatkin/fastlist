@@ -19,9 +19,11 @@ router.post("/", (req,res,next) => {
             req.login(user, {session: false}, async (error) => {
                 if (error) return next(error);
                 const body = { _id: user._id, username: user.username};
-                const token = jwt.sign({user: body}, 'e4344fdf28faf48aac35dc94aa0227fa');
-                res.cookie('token',token,{httpOnly:true, sameSite: 'strict', secure: true});
-                return res.json({token: token, user: body});
+                const token = jwt.sign({user: body}, 'e4344fdf28faf48aac35dc94aa0227fa', {expiresIn: '1d'});
+                console.log("[login.js::23]");
+                console.log(body);
+                res.cookie('token',token,{httpOnly:true, sameSite: 'lax', secure: true});
+                return res.json({user: body});
             });
         } catch (error) {
             return res.json(error);//next(error);

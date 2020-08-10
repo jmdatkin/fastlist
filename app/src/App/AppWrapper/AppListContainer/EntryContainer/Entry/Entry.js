@@ -20,10 +20,6 @@ class Entry extends React.Component {
     });
   }
 
-  // componentDidUpdate() {
-  //   console.log(`idx ${this.props.idx} updated`);
-  // }
-
   render() {
     return (
       <div 
@@ -55,25 +51,3 @@ class Entry extends React.Component {
 export default React.forwardRef((props,ref) =>
   <Entry innerRef={ref} {...props}></Entry>
 );
-// const Entry = React.forwardRef((props, ref) => (
-//   <div 
-//   className={`Entry noselect 
-//   ${props.isFirst ? 'Entry-first-in-list'  : ''}
-//   ${props.isLast ? 'Entry-last-in-list ' : ''}
-//   ${props.isChecked ? 'Entry-checked ' : ''}
-//   ${props.isExpanded ? 'Entry-expanded ' : ''}`}
-//   ref={ref}>
-//     <EntryRow 
-//       entryMousemoveHandler={props.entryMousemoveHandler}
-//       entryMousedownHandler={props.entryMousedownHandler}
-//       entryExpandHandler={props.entryExpandHandler}
-//       entryToggleHandler={props.entryToggleHandler}
-//       content={props.content}
-//       isChecked={props.isChecked}
-//       isExpanded={props.isExpanded}
-//       idx={props.idx}
-//       >
-//     </EntryRow>
-//     {(props.isExpanded) ? <EntrySubmenu /> : ''}
-//   </div>
-// ));

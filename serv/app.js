@@ -10,6 +10,8 @@ var db_helper = require("./db_helper");
 
 var registerRouter = require("./routes/register");
 var loginRouter = require("./routes/login");
+var submitRouter = require("./routes/submit");
+var userlistRouter = require("./routes/userlists");
 
 var app = express();
 
@@ -42,6 +44,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use('/register',registerRouter);
 app.use('/login', loginRouter);
+app.use('/submit',submitRouter);
+app.use('/userlists',userlistRouter);
+
 
 // require("./setupProxy")(app);
 // });
