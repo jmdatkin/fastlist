@@ -21,8 +21,8 @@ function UserActionPane(props) {
             </div>
             <Divider />
             <List>
-                <ListItem>
-                    Logged in as: {props.currentUser !== null ? props.currentUser.username : ''}
+                <ListItem className="LoggedInDisplay">
+                    Logged in as:  <span>{props.currentUser !== null ? props.currentUser.username : ''}</span>
                 </ListItem>
                 <ListItem>
                     <Button onClick={props.exportAction}>

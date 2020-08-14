@@ -36,7 +36,6 @@ function LoginForm(props) {
         else if (response.status === 200) {
             response.text().then(data => JSON.parse(data))
             .then(data => {
-                console.log(data);
                 localStorage.setItem("user",JSON.stringify(data.user));
                 props.setCurrentUser(data.user);
                 props.flashFeedbackMessage("Logged in successfully!");

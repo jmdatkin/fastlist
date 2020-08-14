@@ -2,3 +2,13 @@
     padding: 15px;
     width: 240px;
 }
+
+.LoggedInDisplay {
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.LoggedInDisplay > span {
+    text-transform: none;
+    font-family: 'Roboto Mono', 'Noto Sans Mono', monospace;
+}

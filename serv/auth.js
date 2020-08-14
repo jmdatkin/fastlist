@@ -3,7 +3,7 @@ const JWTStrategy = require("passport-jwt").Strategy;
 const ExtractJWT = require("passport-jwt").ExtractJwt;
 const User = require("./userModel");
 
-passport.use("register", new localStrategy(async(username, password, done) => {
+passport.use("register", new localStrategy(async (username, password, done) => {
     
     // if (User.findOne({username}))
     //     return done(null,false,{message: "A user with this username already exists!"});
@@ -12,8 +12,14 @@ passport.use("register", new localStrategy(async(username, password, done) => {
     if (!userRegexp.test(username) || !passRegexp.test(password))
         return done(null,false,{message:"Username or password does not meet criteria"});
     try {
-        const user = await User.create({username,password});
-        return done(null,user);
+        console.log("[auth.js/register]");
+        console.log(`username: ${username}, password: ${password}`);
+        const user = await User.create({username,password})
+        // .next((user) => {
+            console.log("[auth.js/register:19]");
+            console.log(user);
+            return done(null,user);//});
+        // .catch(error => console.log(error));
     } catch (error) {
         done(error, {message:'A user with that name already exists'});
     }
@@ -21,21 +27,21 @@ passport.use("register", new localStrategy(async(username, password, done) => {
 
 passport.use("login", new localStrategy(async (username,password, done) => {
     try {
-        const user = await User.findOne({username});
-        if (!user) {
+        const userSearchedFor = await User.findOne({username});
+        if (!userSearchedFor) {
             console.log("[auth.js/login::userNotFound]");
             return done(null, false, {message: "User not found!"});
         }
 
-        const validate = await user.isValidPassword(password);
+        const validate = await userSearchedFor.isValidPassword(password);
         if (!validate) {
             console.log("[auth.js/login::incorrectPassword]");
             return done(null, false, {message: "Incorrect password!"});
         }
         console.log("[auth.js/login::successful]");
         console.log("successful login");
-        console.log(user);
-        return done(null, user, {message: "Logged in successfully!"});
+        console.log(userSearchedFor);
+        return done(null, userSearchedFor, {message: "Logged in successfully!"});
     } catch (error) {
         return done(error);
     }
@@ -45,10 +51,10 @@ passport.use(new JWTStrategy(
     {
         secretOrKey: 'e4344fdf28faf48aac35dc94aa0227fa',
         jwtFromRequest: (req) => req.cookies.token
-    }, async (token, done) => {
-        console.log(token);
+    }, async (jwt_payload, done) => {
+        console.log(jwt_payload);
         try {
-            return done(null, token);
+            return done(null, jwt_payload); //passed in as user
         } catch (error) {
             console.log(error);
             done(error);

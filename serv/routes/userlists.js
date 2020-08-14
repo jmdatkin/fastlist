@@ -9,15 +9,21 @@ router.get("/", (req,res,next) => {
             res.status(401);
             next(err);
         }
-        console.log("[userlists.js]");
-        console.log(user);
-        await db_helper.getAllListsFromUser(user.user._id, (data) => {
-            console.log("[userlists.js::.callback()]");
-            console.log(data);
-            res.status(200);
-            res.send(data);
-        })
-        .catch(error => next(error));
+        if (user) {
+            console.log("[userlists.js]");
+            console.log(user);
+            await db_helper.getAllListsFromUser(user.user._id, (data) => {
+                console.log("[userlists.js::.callback()]");
+                console.log(data);
+                res.status(200);
+                res.send(data);
+            })
+            .catch(error => next(error));
+        }
+        else {
+            console.log("[userlists.js]");
+            console.log("could not find user");
+        }
     })(req,res,next);
 });
 

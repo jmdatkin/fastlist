@@ -16,7 +16,6 @@ var userlistRouter = require("./routes/userlists");
 var app = express();
 
 // app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 // app.use(cors());
 
 db_helper.connect();
@@ -26,7 +25,6 @@ db_helper.connect();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(logger('dev'));
 
 // app.use((req,res,next) => {
 //   console.log(req.body);
@@ -37,22 +35,17 @@ app.use(logger('dev'));
 require("./auth");
 
 //Load middleware
-// app.configure(function() {
+
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
+app.use(logger('dev'));
 app.use(passport.initialize());
-app.use(passport.session());
+
 app.use('/register',registerRouter);
 app.use('/login', loginRouter);
 app.use('/submit',submitRouter);
 app.use('/userlists',userlistRouter);
-
-
-// require("./setupProxy")(app);
-// });
-
-// app.use(express.json());
-
 
 
 // catch 404 and forward to error handler
